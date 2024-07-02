@@ -1,6 +1,7 @@
 import { describe, test, expect, vi } from "vitest";
 import { useReactiveToPromisify } from "../composables/use-reactive-to-promisify";
 import { ref } from "vue";
+import { nextTick } from "process";
 
 
 describe('reactive to promisify', () => {
@@ -14,7 +15,7 @@ describe('reactive to promisify', () => {
       return target
     }
     vi.useFakeTimers()
-    const promisifyFn = useReactiveToPromisify(mockFn, (resolve,_, ret) => {
+    const promisifyFn = useReactiveToPromisify(mockFn, (resolve, _, ret) => {
       if (ret.value) {
         resolve(ret.value)
       }
@@ -25,5 +26,36 @@ describe('reactive to promisify', () => {
     vi.runAllTimers()
 
     expect(ret).resolves.toBe(true)
+  })
+
+  test('Cache hook conversion', () => {
+    const target = ref(false)
+    const mockFn = () => {
+      if (!target.value) {
+        setTimeout(() => {
+          target.value = true
+        }, 2000)
+      }
+      return target
+    }
+
+    vi.useFakeTimers()
+    const promisifyFn = useReactiveToPromisify(mockFn, (resolve, _, ret) => {
+      if (ret.value) {
+        resolve(ret.value)
+      }
+    })
+
+    const mockThenFn = vi.fn()
+    promisifyFn().then(mockThenFn)
+    vi.runAllTimers()
+
+    nextTick(() => {
+      expect(mockThenFn).toHaveBeenCalled()
+    })
+
+    for(let i = 0 ; i < 3; i++) {
+      expect(promisifyFn()).resolves.toBe(true)
+    }
   })
 })
