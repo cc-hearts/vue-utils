@@ -33,6 +33,7 @@
     "rollup": "^4.13.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "typescript": "^5.4.3",
+    "vitest": "^1.6.0",
     "vue": "^3.4.21"
   }
 }
