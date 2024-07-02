@@ -4,21 +4,19 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  '@types/node':
-    specifier: ^20.12.2
-    version: 20.12.2
-
 devDependencies:
   '@cc-heart/utils':
-    specifier: ^5.1.1
-    version: 5.1.1
+    specifier: ^5.2.0
+    version: 5.2.0
   '@rollup/plugin-commonjs':
     specifier: ^25.0.7
     version: 25.0.7(rollup@4.13.2)
   '@rollup/plugin-node-resolve':
     specifier: ^15.2.3
     version: 15.2.3(rollup@4.13.2)
+  '@types/node':
+    specifier: ^20.12.2
+    version: 20.12.2
   rollup:
     specifier: ^4.13.2
     version: 4.13.2
@@ -61,8 +59,10 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@cc-heart/utils@5.1.1:
-    resolution: {integrity: sha512-GXUABZe+LfB6PbUDEiyGZS7+xdx1O1RkaNsNoDUkeA4F1yrtYTYKtzP7IUaLsN8v39Lg5TWQHtiM/o/1zEm3dA==}
+  /@cc-heart/utils@5.2.0:
+    resolution: {integrity: sha512-uM3lksTQ0Nrcnogfzy33qyxcB/JpHOHyeSrH67jxFaQbcnnhM9OShqHWfgi+t/MhJL8DRvlrmUqKd4FrB8RaAA==}
+    engines: {node: '>=16.0.0'}
+    requiresBuild: true
     dev: true
 
   /@jridgewell/sourcemap-codec@1.4.15:
@@ -263,7 +263,7 @@ packages:
     resolution: {integrity: sha512-zQ0NYO87hyN6Xrclcqp7f8ZbXNbRfoGWNcMvHTPQp9UUrwI0mI7XBz+cu7/W6/VClYo2g63B0cjull/srU7LgQ==}
     dependencies:
       undici-types: 5.26.5
-    dev: false
+    dev: true
 
   /@types/resolve@1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -674,7 +674,7 @@ packages:
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
-    dev: false
+    dev: true
 
   /universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}

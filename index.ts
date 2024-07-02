@@ -1,1 +1,1 @@
-export * from './src/props'
+export * from './composables'
