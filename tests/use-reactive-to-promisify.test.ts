@@ -13,7 +13,7 @@ describe('reactive to promisify', () => {
       }, 2000)
       return target
     }
-
+    vi.useFakeTimers()
     const promisifyFn = useReactiveToPromisify(mockFn, (resolve,_, ret) => {
       if (ret.value) {
         resolve(ret.value)

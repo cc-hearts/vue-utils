@@ -16,7 +16,8 @@
     "url": "git+https://github.com/cc-hearts/vue-utils.git"
   },
   "scripts": {
-    "build": "rollup -c && tsc -p tsconfig.build.json"
+    "build": "rollup -c && tsc -p tsconfig.build.json",
+    "test": "vitest"
   },
   "exports": {
     ".": {
