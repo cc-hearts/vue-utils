@@ -3,7 +3,8 @@ import { effectScope, watch } from 'vue'
 
 export function useReactiveToPromisify<
   T extends (...args: any) => any,
-  S = ReturnType<T>, P = any
+  S = ReturnType<T>,
+  P = any
 >(hookFn: T, callback: (resolve: Fn, reject: Fn, ret: S) => void) {
 
   const scope = effectScope()

@@ -1,7 +1,6 @@
 import { describe, test, expect, vi } from "vitest";
 import { useReactiveToPromisify } from "../composables/use-reactive-to-promisify";
-import { ref } from "vue";
-import { nextTick } from "process";
+import { ref, nextTick } from "vue";
 
 
 describe('reactive to promisify', () => {
@@ -49,12 +48,11 @@ describe('reactive to promisify', () => {
     const mockThenFn = vi.fn()
     promisifyFn().then(mockThenFn)
     vi.runAllTimers()
-
     nextTick(() => {
       expect(mockThenFn).toHaveBeenCalled()
     })
 
-    for(let i = 0 ; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       expect(promisifyFn()).resolves.toBe(true)
     }
   })
