@@ -6,7 +6,6 @@ export function useReactiveToPromisify<
   S = ReturnType<T>,
   P = any
 >(hookFn: T, callback: (resolve: Fn, reject: Fn, ret: S) => void) {
-
   const scope = effectScope()
 
   return () => {
