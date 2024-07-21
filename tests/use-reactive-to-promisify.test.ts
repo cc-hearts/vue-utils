@@ -64,6 +64,10 @@ describe('reactive to promisify', () => {
 
     Promise.all(fns).then(() => {
       expect(spyFn).toHaveBeenCalledTimes(3)
-    }).catch(() => { })
+    }).catch(() => {/** */})
+  })
+
+  test('custom watcher callback', () => {
+    // TODO:
   })
 })
