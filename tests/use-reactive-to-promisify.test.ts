@@ -29,9 +29,12 @@ describe('reactive to promisify', () => {
 
   test('Cache hook conversion', () => {
     const target = ref(false)
+    const spyFn = vi.fn()
+
     const mockFn = () => {
       if (!target.value) {
         setTimeout(() => {
+          spyFn()
           target.value = true
         }, 2000)
       }
@@ -52,8 +55,15 @@ describe('reactive to promisify', () => {
       expect(mockThenFn).toHaveBeenCalled()
     })
 
+    const fns = []
     for (let i = 0; i < 3; i++) {
-      expect(promisifyFn()).resolves.toBe(true)
+      const target = promisifyFn()
+      fns.push(target)
+      expect(target).resolves.toBe(true)
     }
+
+    Promise.all(fns).then(() => {
+      expect(spyFn).toHaveBeenCalledTimes(3)
+    }).catch(() => { })
   })
 })
