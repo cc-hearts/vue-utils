@@ -9,24 +9,26 @@ export function useReactiveToPromisify<
   const scope = effectScope()
 
   return () => {
-    const ret = new Promise<P>((resolve, reject) => {
-      scope.run(() => {
-        const ret = hookFn()
-        const watcher = ret?.onWatcherCallback || ret
+      const ret = new Promise<P>((resolve, reject) => {
+        scope.run(() => {
+          const ret = hookFn()
+          const watcher = ret?.onWatcherCallback || ret
 
-        watch(
-          watcher,
-          () => {
-            callback(resolve, reject, ret)
-          },
-          { immediate: true },
-        )
+          watch(
+            watcher,
+            () => {
+              callback(resolve, reject, ret)
+            },
+            { immediate: true },
+          )
+        })
       })
-    })
 
-    ret.finally(() => {
-      scope.stop()
-    })
+      ret.finally(() => {
+        scope.stop()
+      }).catch(() => {
+        //
+      })
 
     return ret
   }

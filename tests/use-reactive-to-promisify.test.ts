@@ -93,4 +93,33 @@ describe('reactive to promisify', () => {
     vi.runAllTimers()
     expect(ret).resolves.toEqual({ foo: 'baz' })
   })
+
+
+  // 如果callback抛出异常
+  test('callback throws exception', () => {
+    const target = ref(false)
+
+    const mockFn = () => {
+      const mockData = {
+        foo: 'baz'
+      }
+
+      setTimeout(() => {
+        target.value = true
+      }, 2000)
+
+      return { mockData, target, onWatcherCallback: () => target.value }
+    }
+
+    vi.useFakeTimers()
+    const promisifyFn = useReactiveToPromisify(mockFn, (_, reject, ret) => {
+      if (ret.target.value) {
+        reject(ret.mockData)
+      }
+    })
+
+    const ret = promisifyFn()
+    vi.runAllTimers()
+    expect(ret).rejects.toEqual({ foo: 'baz' })
+  })
 })
