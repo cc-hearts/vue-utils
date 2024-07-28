@@ -7,6 +7,9 @@
     "vue-utils",
     "utils"
   ],
+	"files": [
+		"dist"
+	],
   "author": "Carl Chen",
   "license": "MIT",
   "description": "a generalized tool library for vue",

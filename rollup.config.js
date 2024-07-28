@@ -1,7 +1,7 @@
-import typescript from 'rollup-plugin-typescript2'
-import { readFileSync } from 'fs/promises'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
+import { readFileSync } from 'fs'
+import typescript from 'rollup-plugin-typescript2'
 
 const tsConfig = readFileSync('./tsconfig.json', 'utf-8')
 
