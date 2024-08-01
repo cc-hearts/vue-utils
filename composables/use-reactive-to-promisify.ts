@@ -24,7 +24,7 @@ export function useReactiveToPromisify<
         })
       })
 
-      ret.finally(() => {
+      ret.finally(() => { 
         scope.stop()
       }).catch(() => {
         //

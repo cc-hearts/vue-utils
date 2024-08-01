@@ -21,5 +21,6 @@ export default {
       file: 'dist/browser/index.js',
     },
   ],
+  external: ['vue'],
   plugins: [resolve(), commonjs(), typescript(tsConfig)],
 }
